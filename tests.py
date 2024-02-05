@@ -3,6 +3,19 @@
 import unittest
 from algoritmo import obtener_ganancia_maxima
 
+def obtener_plan_entrenamiento(archivo):
+    with open(archivo, 'r') as file:
+        contenido = file.readlines()
+    planes_por_cantidad_dias = {}
+    for i in range(0, len(contenido), 4):
+        nombre = contenido[i].strip()  
+        plan_entrenamiento = contenido[i+2].split(": ")[1].strip().split(", ")
+        planes_por_cantidad_dias[nombre] = list(plan_entrenamiento)
+
+    return planes_por_cantidad_dias
+
+archivo = './archivos_prueba/Resultados Esperados.txt'
+planes_por_archivo = obtener_plan_entrenamiento(archivo)
 
 def obtener_esfuerzo_y_energia(filename):
     esfuerzo = []
@@ -16,7 +29,6 @@ def obtener_esfuerzo_y_energia(filename):
         for _ in range(length):
             line = file.readline()
             energia.append(int(line))
-
     return esfuerzo, energia
 
 
@@ -28,7 +40,9 @@ class UnitTests(unittest.TestCase):
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
 
-        self.assertEqual(res, ejecucion)
+        self.assertEqual(res, ejecucion[0])
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
+
 
     def test_10_elem(self):
         file = '10.txt'
@@ -37,7 +51,8 @@ class UnitTests(unittest.TestCase):
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
 
-        self.assertEqual(res, ejecucion)
+        self.assertEqual(res, ejecucion[0])
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
 
     def test_10_elem_bis(self):
         file = '10_bis.txt'
@@ -46,7 +61,8 @@ class UnitTests(unittest.TestCase):
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
 
-        self.assertEqual(res, ejecucion)
+        self.assertEqual(res, ejecucion[0])
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
 
     def test_10_elem_todo_entreno(self):
         file = '10_todo_entreno.txt'
@@ -55,8 +71,8 @@ class UnitTests(unittest.TestCase):
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
 
-        self.assertEqual(res, ejecucion)
-
+        self.assertEqual(res, ejecucion[0])
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
     def test_50_elem(self):
         file = '50.txt'
         res = 1870
@@ -64,7 +80,8 @@ class UnitTests(unittest.TestCase):
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
 
-        self.assertEqual(res, ejecucion)
+        self.assertEqual(res, ejecucion[0])
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
 
     def test_50_elem_bis(self):
         file = '50_bis.txt'
@@ -73,7 +90,8 @@ class UnitTests(unittest.TestCase):
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
 
-        self.assertEqual(res, ejecucion)
+        self.assertEqual(res, ejecucion[0])
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
 
     def test_100_elem(self):
         file = '100.txt'
@@ -82,7 +100,9 @@ class UnitTests(unittest.TestCase):
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
 
-        self.assertEqual(res, ejecucion)
+        self.assertEqual(res, ejecucion[0])
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
+
 
     def test_500_elem(self):
         file = '500.txt'
@@ -91,7 +111,8 @@ class UnitTests(unittest.TestCase):
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
 
-        self.assertEqual(res, ejecucion)
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
+        self.assertEqual(res, ejecucion[0])
 
     def test_1000_elem(self):
         file = '1000.txt'
@@ -100,7 +121,8 @@ class UnitTests(unittest.TestCase):
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
 
-        self.assertEqual(res, ejecucion)
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
+        self.assertEqual(res, ejecucion[0])
 
     def test_5000_elem(self):
         file = '5000.txt'
@@ -108,9 +130,15 @@ class UnitTests(unittest.TestCase):
 
         esfuerzos, energias = obtener_esfuerzo_y_energia(file)
         ejecucion = obtener_ganancia_maxima(esfuerzos, energias)
+        
+        self.assertEqual(res, ejecucion[0])
+        self.assertEqual(planes_por_archivo[file], ejecucion[1])
 
-        self.assertEqual(res, ejecucion)
 
 
 if __name__ == '__main__':
+
     unittest.main()
+
+
+
