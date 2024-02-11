@@ -1,12 +1,12 @@
 # TDA-Dynamic-Programming
 
-[Informe](https://github.com/JuaniFIUBA/TP2-TDA/blob/main/informe.pdf)
+[Informe](https://github.com/maxogod/TDA-dynamic-programming/blob/main/informe.pdf)
 
-[Análisis](https://github.com/JuaniFIUBA/TP2-TDA/blob/main/analisis.ipynb)
+[Análisis](https://github.com/maxogod/TDA-dynamic-programming/blob/main/analisis.ipynb)
 
-[Algoritmo](https://github.com/JuaniFIUBA/TP2-TDA/blob/main/algoritmo.py)
+[Algoritmo](https://github.com/maxogod/TDA-dynamic-programming/blob/main/algoritmo.py)
 
-[Tests](https://github.com/JuaniFIUBA/TP2-TDA/blob/main/tests.py)
+[Tests](https://github.com/maxogod/TDA-dynamic-programming/blob/main/tests.py)
 
 #### Como correr el programa:
 
